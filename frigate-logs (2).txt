@@ -1,0 +1,38 @@
+2025-04-19 15:55:35.143771025  [INFO] Preparing Frigate...
+2025-04-19 15:55:35.217856828  [INFO] Starting Frigate...
+2025-04-19 15:55:37.047019415  [2025-04-19 09:55:37] frigate.util.config            INFO    : Checking if frigate config needs migration...
+2025-04-19 15:55:37.068982500  [2025-04-19 09:55:37] frigate.util.config            INFO    : frigate config does not need migration...
+2025-04-19 15:55:37.302956500  [2025-04-19 09:55:37] frigate.util.services          INFO    : Automatically detected vaapi hwaccel for video decoding
+2025-04-19 15:55:37.328745290  [2025-04-19 09:55:37] frigate.app                    INFO    : Starting Frigate (0.15.0-6cb5cfb)
+2025-04-19 15:55:37.330179539  [2025-04-19 09:55:37] frigate.app                    INFO    : Creating directory: /tmp/cache
+2025-04-19 15:55:37.333444119  [2025-04-19 09:55:37] peewee_migrate.logs            INFO    : Starting migrations
+2025-04-19 15:55:37.333594792  [2025-04-19 09:55:37] peewee_migrate.logs            INFO    : There is nothing to migrate
+2025-04-19 15:55:37.833757569  [2025-04-19 09:55:37] frigate.app                    INFO    : Recording process started: 557
+2025-04-19 15:55:37.833769948  [2025-04-19 09:55:37] frigate.app                    INFO    : Review process started: 558
+2025-04-19 15:55:37.835535767  [2025-04-19 09:55:37] frigate.app                    INFO    : go2rtc process pid: 96
+2025-04-19 15:55:37.846386912  [2025-04-19 09:55:37] detector.ov_0                  INFO    : Starting detection process: 573
+2025-04-19 15:55:37.846395746  [2025-04-19 09:55:37] detector.ov_1                  INFO    : Starting detection process: 575
+2025-04-19 15:55:37.855024844  [2025-04-19 09:55:37] detector.ov_2                  INFO    : Starting detection process: 577
+2025-04-19 15:55:37.856503336  [2025-04-19 09:55:37] detector.ov_4                  INFO    : Starting detection process: 579
+2025-04-19 15:55:37.867860766  [2025-04-19 09:55:37] frigate.app                    INFO    : Output process started: 596
+2025-04-19 15:55:39.245329663  [2025-04-19 09:55:39] frigate.app                    INFO    : Camera processor started for driveway: 756
+2025-04-19 15:55:39.245602837  [2025-04-19 09:55:39] frigate.app                    INFO    : Camera processor started for 4k_east: 757
+2025-04-19 15:55:39.245617290  [2025-04-19 09:55:39] frigate.app                    INFO    : Camera processor started for north_ptz: 765
+2025-04-19 15:55:39.251501246  [2025-04-19 09:55:39] frigate.app                    INFO    : Camera processor started for west_ptz: 773
+2025-04-19 15:55:39.256983193  [2025-04-19 09:55:39] frigate.app                    INFO    : Camera processor started for west_lpr: 781
+2025-04-19 15:55:39.262441833  [2025-04-19 09:55:39] frigate.app                    INFO    : Camera processor started for north_lpr: 789
+2025-04-19 15:55:39.277032421  [2025-04-19 09:55:39] frigate.app                    INFO    : Capture process started for driveway: 804
+2025-04-19 15:55:39.282859413  [2025-04-19 09:55:39] frigate.app                    INFO    : Capture process started for 4k_east: 807
+2025-04-19 15:55:39.289055187  [2025-04-19 09:55:39] frigate.app                    INFO    : Capture process started for north_ptz: 811
+2025-04-19 15:55:39.316190442  [2025-04-19 09:55:39] frigate.app                    INFO    : Capture process started for west_ptz: 827
+2025-04-19 15:55:39.327029452  [2025-04-19 09:55:39] frigate.app                    INFO    : Capture process started for west_lpr: 868
+2025-04-19 15:55:39.339768347  [2025-04-19 09:55:39] frigate.app                    INFO    : Capture process started for north_lpr: 890
+2025-04-19 15:55:39.341204723  [2025-04-19 09:55:39] frigate.storage                WARNING : driveway has a bandwidth of 11117.95 MB/hr which exceeds the expected maximum. This typically indicates an issue with the cameras recordings.
+2025-04-19 15:55:39.342096267  [2025-04-19 09:55:39] frigate.storage                WARNING : north_ptz has a bandwidth of 10699.94 MB/hr which exceeds the expected maximum. This typically indicates an issue with the cameras recordings.
+2025-04-19 15:55:39.342523268  [2025-04-19 09:55:39] frigate.storage                WARNING : west_ptz has a bandwidth of 12358.47 MB/hr which exceeds the expected maximum. This typically indicates an issue with the cameras recordings.
+2025-04-19 15:55:39.342993247  [2025-04-19 09:55:39] frigate.storage                WARNING : west_lpr has a bandwidth of 10622.9 MB/hr which exceeds the expected maximum. This typically indicates an issue with the cameras recordings.
+2025-04-19 15:55:39.343173409  [2025-04-19 09:55:39] frigate.storage                WARNING : north_lpr has a bandwidth of 14891.09 MB/hr which exceeds the expected maximum. This typically indicates an issue with the cameras recordings.
+2025-04-19 15:55:39.551862319  [2025-04-19 09:55:39] frigate.api.fastapi_app        INFO    : Starting FastAPI app
+2025-04-19 15:55:39.618906436  [2025-04-19 09:55:39] frigate.api.fastapi_app        INFO    : FastAPI started
+2025-04-19 16:00:39.345219908  [2025-04-19 10:00:39] frigate.storage                INFO    : Less than 1 hour of recording space left, running storage maintenance...
+2025-04-19 16:00:40.468206791  [2025-04-19 10:00:40] frigate.storage                ERROR   : Could not clear 52080.270000000004 MB, currently 34927.400000000016 MB have been cleared. Retained recordings must be deleted.

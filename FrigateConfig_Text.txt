@@ -1,0 +1,261 @@
+mqtt:
+  host: ********
+  user: ********
+  password: ********
+
+detectors:
+  ov_0:
+    type: openvino
+    device: GPU
+  ov_1:
+    type: openvino
+    device: GPU
+  ov_2:
+    type: openvino
+    device: GPU
+  ov_4:
+    type: openvino
+    device: GPU
+
+#database:
+#  /config/frigate.db
+
+model:
+  width: 300
+  height: 300
+  input_tensor: nhwc
+  input_pixel_format: bgr
+  path: /openvino-model/ssdlite_mobilenet_v2.xml
+  labelmap_path: /openvino-model/coco_91cl_bkgr.txt
+
+live:
+  height: 720
+  quality: 16
+
+cameras:
+  driveway:   #Axis P1368-E
+    ffmpeg:
+      hwaccel_args: preset-intel-qsv-h264
+      inputs:
+        # High Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=3840x2160&fps=15&videocodec=h264
+          roles:
+            - record
+        # Low Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1280x720&fps=15&videocodec=h264
+          roles:
+            - detect
+    record:
+      enabled: true
+    snapshots:
+      enabled: true
+    detect:
+      enabled: true
+      width: 1280
+      height: 720
+      fps: 5
+    objects:
+      track:
+        - person
+        - car
+
+  4k_east:   #Axis P1368-E
+    ffmpeg:
+      hwaccel_args: preset-intel-qsv-h264
+      inputs:
+        # High Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=3840x2160&fps=15&videocodec=h264
+          roles:
+            - record
+        # Low Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1280x720&fps=15&videocodec=h264
+          roles:
+            - detect
+    record:
+      enabled: true
+    snapshots:
+      enabled: true
+    detect:
+      enabled: true
+      width: 1280
+      height: 720
+      fps: 5
+    objects:
+      track:
+        - person
+        - car
+
+  north_ptz:   #Axis Q6125-LE
+    ffmpeg:
+      hwaccel_args: preset-intel-qsv-h264
+      inputs:
+        # High Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1920x1080&fps=15&videocodec=h264
+          roles:
+            - record
+            - detect
+        # Low Resolution Stream
+        #- path: 
+        #    rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1280x720&fps=10&h264profile=main&videocodec=h264
+        #  roles:
+        #    - detect
+    onvif:
+      host: 192.168.**.**
+      port: 80
+      user: onvif
+      password: **********
+      tls_insecure: false
+      autotracking:
+        enabled: true
+        calibrate_on_startup: false
+        zooming: absolute
+        zoom_factor: 0.3
+        track:
+          - person
+        required_zones:
+          - sidewalk_north_far
+          - sidewalk_north_near
+        return_preset: home
+        timeout: 10
+        movement_weights: 0.0, 1.0, 0.7284154891967773, 0.13083592677855846, -0.011572902638503838
+    record:
+      enabled: true
+    snapshots:
+      enabled: true
+    detect:
+      enabled: true
+      width: 1920
+      height: 1080
+      fps: 10
+    objects:
+      track:
+        - person
+        - car
+    zones:
+      sidewalk_north_far:
+        coordinates: 0,0,1,0,1,0.288,0,0.267
+        inertia: 5
+        loitering_time: 0
+        objects: person
+      sidewalk_north_near:
+        coordinates: 1,0.423,0,0.415,0,0.898,1,0.905
+        inertia: 5
+        loitering_time: 0
+        objects: person
+    motion:
+      threshold: 40
+      contour_area: 16
+      improve_contrast: true
+      lightning_threshold: 0.3
+
+  west_ptz:   #Axis Q6125-LE
+    ffmpeg:
+      hwaccel_args: preset-intel-qsv-h264
+      inputs:
+        # High Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1920x1080&fps=15&videocodec=h264
+          roles:
+            - record
+            - detect
+        # Low Resolution Stream
+        #- path: 
+        #    rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1280x720&fps=10&h264profile=main&videocodec=h264
+        #  roles:
+        #    - detect
+    onvif:
+      host: 192.168.**.**
+      port: 80
+      user: onvif
+      password: **********
+      tls_insecure: false
+      autotracking:
+        enabled: true
+        calibrate_on_startup: false
+        zooming: absolute
+        zoom_factor: 0.3
+        track:
+          - person
+        required_zones:
+          - sidewalk_west
+        return_preset: home
+        timeout: 10
+        movement_weights: 0.0, 1.0, 0.7284154891967773, 0.13083592677855846, -0.011572902638503838
+    record:
+      enabled: true
+    snapshots:
+      enabled: true
+    detect:
+      enabled: true
+      width: 1920
+      height: 1080
+      fps: 10
+    objects:
+      track:
+        - person
+        - car
+    zones:
+      sidewalk_west:
+        coordinates: 0,0.317,0.7,0.152,0.997,0.129,0.996,0.818,0.005,0.965
+        inertia: 5
+        loitering_time: 0
+        objects: person
+    motion:
+      threshold: 40
+      contour_area: 16
+      improve_contrast: true
+      lightning_threshold: 0.3
+
+  west_lpr:   #Axis P1365
+    ffmpeg:
+      hwaccel_args: preset-intel-qsv-h264
+      inputs:
+        # High Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1920x1080&fps=15&videocodec=h264
+          roles:
+            - record
+            - detect
+            
+    record:
+      enabled: true
+    snapshots:
+      enabled: true
+    detect:
+      enabled: true
+      width: 1920
+      height: 1080
+      fps: 5
+    objects:
+      track:
+        - car
+
+  north_lpr:   #Axis P1365
+    ffmpeg:
+      hwaccel_args: preset-intel-qsv-h264
+      inputs:
+        # High Resolution Stream
+        - path: 
+            rtsp://onvif:********@192.168.**.**/onvif-media/media.amp?resolution=1920x1080&fps=15&videocodec=h264
+          roles:
+            - record
+            - detect
+            
+    record:
+      enabled: true
+    snapshots:
+      enabled: true
+    detect:
+      enabled: true
+      width: 1920
+      height: 1080
+      fps: 5
+    objects:
+      track:
+        - car
+version: 0.15-1
